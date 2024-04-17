@@ -5,9 +5,9 @@ export default function MainLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col">
       <Header />
-      <main className="flex flex-1 flex-col items-center justify-center">
+      <main className="flex flex-col items-center justify-center">
         {children}
       </main>
       <Footer />
