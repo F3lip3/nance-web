@@ -5,32 +5,11 @@ import { useState } from 'react';
 
 import { PortfolioList } from '@/components/portfolio/portfolio-list';
 import { Button } from '@/components/ui/button';
-import { PortfolioEntity } from '@/entities/portfolio';
+import { usePortfolios } from '@/hooks/use-portfolios';
 
-export const PortfolioContainer = () => {
+export const PortfoliosContainer = () => {
   const [edit, setEdit] = useState(false);
-  const [portfolios, setPortfolios] = useState<PortfolioEntity[]>([
-    {
-      id: 'a',
-      name: 'My first portfolio',
-      total: 0,
-      selected: true,
-      avatar: {
-        color: 'silver',
-        icon: 'rocket'
-      }
-    },
-    {
-      id: 'b',
-      name: 'Teste 01',
-      total: 0,
-      selected: false,
-      avatar: {
-        color: 'green',
-        icon: 'fox'
-      }
-    }
-  ]);
+  const { portfolios } = usePortfolios();
 
   const toggleEdit = () => {
     setEdit(currentEdit => !currentEdit);
@@ -41,7 +20,7 @@ export const PortfolioContainer = () => {
       <div className="flex flex-row justify-between items-center">
         <p className="text-base font-semibold">
           My portfolios{' '}
-          {portfolios?.length > 0 && <span>({portfolios.length})</span>}
+          {portfolios.length > 0 && <span>({portfolios.length})</span>}
         </p>
         <Button
           variant="ghost"

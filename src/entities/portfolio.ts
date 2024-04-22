@@ -4,6 +4,7 @@ export interface PortfolioEntity {
   total: number;
   selected: boolean;
   avatar: PortfolioAvatarEntity;
+  gain24: number;
 }
 
 export interface PortfolioAvatarEntity {
