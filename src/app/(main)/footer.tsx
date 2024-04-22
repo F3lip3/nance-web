@@ -13,10 +13,10 @@ export const Footer: React.FC = () => {
         </div>
       </div>
       <div className="flex flex-row flex-1 items-center justify-end pr-12">
-        <div className="w-32 h-10 bg-[url(/app_store_badge_black_1.svg)] bg-center bg-no-repeat bg-contain">
+        <div className="w-32 h-10 bg-[url(/img/app_store_badge_black_1.svg)] bg-center bg-no-repeat bg-contain">
           &nbsp;
         </div>
-        <div className="w-32 h-10 bg-[url(/google_play_badge_1.png)] bg-center bg-no-repeat bg-contain">
+        <div className="w-32 h-10 bg-[url(/img/google_play_badge_1.png)] bg-center bg-no-repeat bg-contain">
           &nbsp;
         </div>
       </div>

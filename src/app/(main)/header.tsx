@@ -20,16 +20,16 @@ export const Header: React.FC = () => {
           <Logo width={80} height={80} className="-ml-8" />
           <h1 className="text-4xl font-extrabold text-logo -ml-7">ance</h1>
         </div>
-        <ClerkLoading>
-          <Loader2 className="h-5 w-5 text-muted-foreground animate-spin" />
-        </ClerkLoading>
-        <ClerkLoaded>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          <SignedOut>
-            <div className="flex flex-row gap-2">
-              <ThemeToggle />
+        <div className="flex flex-row gap-2 items-center justify-center">
+          <ThemeToggle />
+          <ClerkLoading>
+            <Loader2 className="h-5 w-5 text-muted-foreground animate-spin" />
+          </ClerkLoading>
+          <ClerkLoaded>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
               <SignInButton
                 mode="modal"
                 afterSignInUrl="/portfolio"
@@ -48,9 +48,9 @@ export const Header: React.FC = () => {
                   Sign up
                 </Button>
               </SignUpButton>
-            </div>
-          </SignedOut>
-        </ClerkLoaded>
+            </SignedOut>
+          </ClerkLoaded>
+        </div>
       </div>
     </header>
   );

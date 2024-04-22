@@ -1,9 +1,19 @@
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import {
+  ClerkLoaded,
+  ClerkLoading,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut
+} from '@clerk/nextjs';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="2xl:max-w-screen-2xl 3xl:max-w-screen-3xl flex flex-col flex-1 w-full p-6 xl:p-10 pb-16 bg-slate-50 dark:bg-slate-900">
+    <div className="flex flex-col p-6 xl:p-10 pb-16">
       <div className="flex flex-row mb-16">
         <div className="flex flex-1 flex-col mt-10">
           <h3 className="text-2xl text-blue-600 font-semibold">
@@ -16,37 +26,64 @@ export default function Home() {
             Keep track of your profits, losses and portfolio valuation
             <br /> with our easy to use platform.
           </span>
-          <div className="flex flex-row gap-4">
-            <Button size="lg">Create your portfolio</Button>
-            <Button size="lg" variant="ghost">
-              Log in
-            </Button>
-          </div>
+          <ClerkLoading>
+            <div className="flex flex-row gap-4">
+              <Skeleton className="h-[44px] w-[202px]" />
+              <Skeleton className="h-[44px] w-[104px]" />
+            </div>
+          </ClerkLoading>
+          <ClerkLoaded>
+            <div className="flex flex-row gap-4">
+              <SignedIn>
+                <Link href="/portfolio">
+                  <Button size="lg">Go to your portfolio</Button>
+                </Link>
+              </SignedIn>
+              <SignedOut>
+                <SignUpButton
+                  mode="modal"
+                  afterSignInUrl="/portfolio"
+                  afterSignUpUrl="/portfolio"
+                >
+                  <Button size="lg">Create your portfolio</Button>
+                </SignUpButton>
+                <SignInButton
+                  mode="modal"
+                  afterSignInUrl="/portfolio"
+                  afterSignUpUrl="/portfolio"
+                >
+                  <Button size="lg" variant="ghost">
+                    Log in
+                  </Button>
+                </SignInButton>
+              </SignedOut>
+            </div>
+          </ClerkLoaded>
         </div>
         <div className="flex flex-1 h-[390px] relative">
           <Image
-            src="/safari-lightmode-v2.png"
+            src="/img/safari-lightmode-v2.png"
             height={349}
             width={572}
             alt="safari-lightmode"
             className="min-h-[349px] min-w-[572px] xl:min-w-[658px] xl:min-h-[401px] -mr-8 xl:mr-0 block dark:hidden"
           />
           <Image
-            src="/safari-darkmode-v2.png"
+            src="/img/safari-darkmode-v2.png"
             height={349}
             width={572}
             alt="safari-lightmode"
             className="min-h-[349px] min-w-[572px] xl:min-w-[658px] xl:min-h-[401px] -mr-8 xl:mr-0 hidden dark:block"
           />
           <Image
-            src="/preview-mobile.png"
+            src="/img/preview-mobile.png"
             height={392}
             width={203}
             alt="mobile-preview"
             className="min-h-[392px] min-w-[203px] absolute top-[32px] left-[456px] block dark:hidden"
           />
           <Image
-            src="/preview-mobile-night.png"
+            src="/img/preview-mobile-night.png"
             height={392}
             width={203}
             alt="mobile-preview"
@@ -65,34 +102,34 @@ export default function Home() {
                 track of your crypto assets no matter where you are.
               </p>
               <div className="flex flex-row mt-8 -ml-2">
-                <div className="w-32 h-10 bg-[url(/app_store_badge_black_1.svg)] bg-center bg-no-repeat bg-contain">
+                <div className="w-32 h-10 bg-[url(/img/app_store_badge_black_1.svg)] bg-center bg-no-repeat bg-contain">
                   &nbsp;
                 </div>
-                <div className="w-32 h-10 bg-[url(/google_play_badge_1.png)] bg-center bg-no-repeat bg-contain">
+                <div className="w-32 h-10 bg-[url(/img/google_play_badge_1.png)] bg-center bg-no-repeat bg-contain">
                   &nbsp;
                 </div>
               </div>
             </div>
             <Image
-              src="/iphone-portfolio-light.png"
+              src="/img/iphone-portfolio-light.png"
               width={1030}
               height={613}
               alt="mobile preview"
-              className="min-h-[613px] min-w-[1030px] -mt-12 -ml-96 2xl:-ml-28 block dark:hidden"
+              className="min-h-[613px] min-w-[1030px] -mt-12 -ml-96 2xl:-ml-80 block dark:hidden"
             />
             <Image
-              src="/iphone-portfolio-dark.png"
+              src="/img/iphone-portfolio-dark.png"
               width={1030}
               height={613}
               alt="mobile preview"
-              className="min-h-[613px] min-w-[1030px] -mt-12 -ml-96 2xl:-ml-28 hidden dark:block"
+              className="min-h-[613px] min-w-[1030px] -mt-12 -ml-96 2xl:-ml-80 hidden dark:block"
             />
           </div>
         </div>
         <div>
           <div className="bg-slate-200 dark:bg-slate-950 h-full p-8 rounded-3xl">
             <Image
-              src="/intro-icon-0.svg"
+              src="/img/intro-icon-0.svg"
               alt="intro-0"
               width={72}
               height={72}
@@ -107,7 +144,7 @@ export default function Home() {
         <div>
           <div className="bg-slate-200 dark:bg-slate-950 h-full p-8 rounded-3xl">
             <Image
-              src="/intro-icon-1.svg"
+              src="/img/intro-icon-1.svg"
               alt="intro-0"
               width={72}
               height={72}
@@ -122,7 +159,7 @@ export default function Home() {
         <div>
           <div className="bg-slate-200 dark:bg-slate-950 h-full p-8 rounded-3xl">
             <Image
-              src="/intro-icon-2.svg"
+              src="/img/intro-icon-2.svg"
               alt="intro-0"
               width={72}
               height={72}
@@ -139,7 +176,7 @@ export default function Home() {
         <div>
           <div className="bg-slate-200 dark:bg-slate-950 h-full p-8 rounded-3xl">
             <Image
-              src="/intro-icon-3.svg"
+              src="/img/intro-icon-3.svg"
               alt="intro-0"
               width={72}
               height={72}
