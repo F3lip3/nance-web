@@ -24,8 +24,9 @@ export const PortfoliosProvider: React.FC<PortfoliosProviderProps> = ({
     {
       id: 'a',
       name: 'My first portfolio',
-      total: 0,
-      gain24: 0,
+      total: 13520.46,
+      gain24: 5380.22,
+      variation24: 0.39,
       selected: true,
       avatar: {
         color: 'silver',
@@ -35,12 +36,25 @@ export const PortfoliosProvider: React.FC<PortfoliosProviderProps> = ({
     {
       id: 'b',
       name: 'Teste 01',
-      total: 0,
-      gain24: 0,
+      total: 1430.21,
+      gain24: -320.77,
+      variation24: -3.21,
       selected: false,
       avatar: {
         color: 'green',
         icon: 'fox'
+      }
+    },
+    {
+      id: 'c',
+      name: 'Teste 02',
+      total: 0,
+      gain24: 0,
+      variation24: 0,
+      selected: false,
+      avatar: {
+        color: 'rose',
+        icon: 'money-1'
       }
     }
   ] satisfies PortfolioEntity[]);

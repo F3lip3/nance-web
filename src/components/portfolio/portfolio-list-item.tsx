@@ -17,8 +17,10 @@ export function PortfolioListItem({ edit, portfolio }: Props) {
     return (
       <div
         className={cn(
-          'flex flex-row w-full rounded-lg justify-between items-center p-2 cursor-pointer border border-slate-900',
-          portfolio.selected ? 'bg-slate-800' : 'hover:hover:border-slate-800'
+          'flex flex-row w-full rounded-lg justify-between items-center p-2 cursor-pointer border border-transparent dark:border-slate-900',
+          portfolio.selected
+            ? 'bg-slate-200 dark:bg-slate-800'
+            : 'hover:border-slate-200 dark:hover:border-slate-800'
         )}
       >
         <div className="flex flex-row items-center gap-2">
@@ -50,8 +52,10 @@ export function PortfolioListItem({ edit, portfolio }: Props) {
   return (
     <button
       className={cn(
-        'flex flex-row w-full rounded-lg justify-between items-center p-2 cursor-pointer border border-slate-900',
-        portfolio.selected ? 'bg-slate-800' : 'hover:hover:border-slate-800'
+        'flex flex-row w-full rounded-lg justify-between items-center p-2 cursor-pointer border border-transparent dark:border-slate-900',
+        portfolio.selected
+          ? 'bg-slate-200 dark:bg-slate-800'
+          : 'hover:border-slate-200 dark:hover:border-slate-800'
       )}
       onClick={() => setSelected(portfolio.id)}
     >
