@@ -1,9 +1,21 @@
 import { PortfolioAvatar } from '@/components/portfolio/portfolio-avatar';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 import { PortfolioEntity } from '@/entities/portfolio';
 import { usePortfolios } from '@/hooks/use-portfolios';
 import { cn } from '@/lib/utils';
-import { EllipsisIcon, GripVerticalIcon } from 'lucide-react';
+import {
+  Edit2Icon,
+  EllipsisIcon,
+  GripVerticalIcon,
+  Trash2Icon
+} from 'lucide-react';
 
 type Props = {
   portfolio: PortfolioEntity;
@@ -17,10 +29,8 @@ export function PortfolioListItem({ edit, portfolio }: Props) {
     return (
       <div
         className={cn(
-          'flex flex-row w-full rounded-lg justify-between items-center p-2 cursor-pointer border border-transparent dark:border-slate-900',
-          portfolio.selected
-            ? 'bg-slate-200 dark:bg-slate-800'
-            : 'hover:border-slate-200 dark:hover:border-slate-800'
+          'flex flex-row w-full rounded-lg justify-between items-center p-2 cursor-pointer border border-transparent',
+          portfolio.selected ? 'bg-muted' : 'hover:border-muted'
         )}
       >
         <div className="flex flex-row items-center gap-2">
@@ -37,13 +47,29 @@ export function PortfolioListItem({ edit, portfolio }: Props) {
           </div>
         </div>
         {edit && (
-          <Button
-            size="icon_sm"
-            variant="ghost"
-            className="text-muted-foreground"
-          >
-            <EllipsisIcon size={18} />
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                size="icon_sm"
+                variant="ghost"
+                className="text-muted-foreground"
+              >
+                <EllipsisIcon size={18} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <Edit2Icon size={20} className="mr-2" />
+                  <span>Edit portfolio</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Trash2Icon size={20} className="mr-2" />
+                  <span>Remove portfolio</span>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         )}
       </div>
     );
@@ -52,10 +78,8 @@ export function PortfolioListItem({ edit, portfolio }: Props) {
   return (
     <button
       className={cn(
-        'flex flex-row w-full rounded-lg justify-between items-center p-2 cursor-pointer border border-transparent dark:border-slate-900',
-        portfolio.selected
-          ? 'bg-slate-200 dark:bg-slate-800'
-          : 'hover:border-slate-200 dark:hover:border-slate-800'
+        'flex flex-row w-full rounded-lg justify-between items-center p-2 cursor-pointer border border-transparent',
+        portfolio.selected ? 'bg-muted' : 'hover:border-muted'
       )}
       onClick={() => setSelected(portfolio.id)}
     >

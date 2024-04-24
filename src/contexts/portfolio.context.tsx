@@ -11,6 +11,7 @@ export interface PortfoliosContextData {
   portfolios: PortfolioEntity[];
   portfolio?: PortfolioEntity;
   setSelected: (portfolioId: string) => void;
+  setPortfolio: (updatedPortfolio: PortfolioEntity) => void;
 }
 
 export const PortfoliosContext = createContext<PortfoliosContextData>(
@@ -28,6 +29,8 @@ export const PortfoliosProvider: React.FC<PortfoliosProviderProps> = ({
       gain24: 5380.22,
       variation24: 0.39,
       selected: true,
+      showCharts: true,
+      myPortfolio: true,
       avatar: {
         color: 'silver',
         icon: 'rocket'
@@ -40,6 +43,8 @@ export const PortfoliosProvider: React.FC<PortfoliosProviderProps> = ({
       gain24: -320.77,
       variation24: -3.21,
       selected: false,
+      showCharts: true,
+      myPortfolio: true,
       avatar: {
         color: 'green',
         icon: 'fox'
@@ -52,6 +57,8 @@ export const PortfoliosProvider: React.FC<PortfoliosProviderProps> = ({
       gain24: 0,
       variation24: 0,
       selected: false,
+      showCharts: false,
+      myPortfolio: false,
       avatar: {
         color: 'rose',
         icon: 'money-1'
@@ -72,8 +79,18 @@ export const PortfoliosProvider: React.FC<PortfoliosProviderProps> = ({
     );
   };
 
+  const setPortfolio = (updatedPortfolio: PortfolioEntity) => {
+    setPortfolios(currentPortfolios =>
+      currentPortfolios.map(portfolio =>
+        portfolio.id === updatedPortfolio.id ? updatedPortfolio : portfolio
+      )
+    );
+  };
+
   return (
-    <PortfoliosContext.Provider value={{ portfolios, portfolio, setSelected }}>
+    <PortfoliosContext.Provider
+      value={{ portfolios, portfolio, setPortfolio, setSelected }}
+    >
       {children}
     </PortfoliosContext.Provider>
   );

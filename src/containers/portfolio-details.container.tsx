@@ -1,24 +1,43 @@
 'use client';
 
-import { ChevronDownIcon, ChevronUpIcon, EllipsisIcon } from 'lucide-react';
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  Edit2Icon,
+  EllipsisIcon,
+  Trash2Icon
+} from 'lucide-react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 
 import { PortfolioAvatar } from '@/components/portfolio/portfolio-avatar';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { usePortfolios } from '@/hooks/use-portfolios';
 import { cn } from '@/lib/utils';
 
 export const PortfolioDetailsContainer = () => {
-  const { portfolio } = usePortfolios();
+  const { portfolio, setPortfolio } = usePortfolios();
   const { theme } = useTheme();
-
-  console.info(theme);
 
   const emptyImageSrc =
     theme === 'dark' ? '/img/empty02.svg' : '/img/empty01.svg';
+
+  const onShowChartsChange = (checked: boolean) => {
+    if (portfolio) {
+      setPortfolio({ ...portfolio, showCharts: checked });
+    }
+  };
 
   return (
     <div className="flex flex-col w-full pl-4 pr-8 py-8">
@@ -64,12 +83,34 @@ export const PortfolioDetailsContainer = () => {
             <div className="flex flex-row items-center justify-end gap-4">
               <div className="flex flex-row items-center gap-3">
                 <Label htmlFor="show-charts">Show charts</Label>
-                <Switch id="show-charts" />
+                <Switch
+                  id="show-charts"
+                  checked={portfolio.showCharts}
+                  onCheckedChange={onShowChartsChange}
+                />
               </div>
               <Button>+ Add transaction</Button>
-              <Button variant="secondary">
-                <EllipsisIcon size={20} />
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="secondary">
+                    <EllipsisIcon size={20} />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>Portfolio</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem>
+                      <Edit2Icon size={20} className="mr-2" />
+                      <span>Edit</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Trash2Icon size={20} className="mr-2" />
+                      <span>Remove</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </>
         )}
