@@ -1,15 +1,3 @@
-export interface PortfolioEntity {
-  id: string;
-  name: string;
-  total: number;
-  selected: boolean;
-  avatar: PortfolioAvatarEntity;
-  gain24: number;
-  variation24: number;
-  showCharts: boolean;
-  myPortfolio: boolean;
-}
-
 export interface PortfolioAvatarEntity {
   color:
     | 'blue'

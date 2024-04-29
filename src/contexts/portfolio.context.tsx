@@ -1,6 +1,6 @@
 'use client';
 
-import { PortfolioEntity } from '@/entities/portfolio';
+import { PortfolioEntity } from '@/entities/portfolio.entity';
 import { createContext, useMemo, useState } from 'react';
 
 interface PortfoliosProviderProps {
@@ -25,9 +25,9 @@ export const PortfoliosProvider: React.FC<PortfoliosProviderProps> = ({
     {
       id: 'a',
       name: 'My first portfolio',
-      total: 13520.46,
-      gain24: 5380.22,
-      variation24: 0.39,
+      totalAmount: 13520.46,
+      valueChange24h: 5380.22,
+      valueChangePercentage24h: 0.39,
       selected: true,
       showCharts: true,
       myPortfolio: true,
@@ -39,9 +39,9 @@ export const PortfoliosProvider: React.FC<PortfoliosProviderProps> = ({
     {
       id: 'b',
       name: 'Teste 01',
-      total: 1430.21,
-      gain24: -320.77,
-      variation24: -3.21,
+      totalAmount: 1430.21,
+      valueChange24h: -320.77,
+      valueChangePercentage24h: -3.21,
       selected: false,
       showCharts: true,
       myPortfolio: true,
@@ -53,9 +53,9 @@ export const PortfoliosProvider: React.FC<PortfoliosProviderProps> = ({
     {
       id: 'c',
       name: 'Teste 02',
-      total: 0,
-      gain24: 0,
-      variation24: 0,
+      totalAmount: 0,
+      valueChange24h: 0,
+      valueChangePercentage24h: 0,
       selected: false,
       showCharts: false,
       myPortfolio: false,

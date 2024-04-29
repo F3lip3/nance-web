@@ -43,7 +43,7 @@ export function PortfolioListItem({ edit, portfolio }: Props) {
           <PortfolioAvatar avatar={portfolio.avatar} />
           <div className="flex flex-col items-start">
             <span className="text-sm font-semibold">{portfolio.name}</span>
-            <p className="text-xs">${portfolio.total}</p>
+            <p className="text-xs">${portfolio.totalAmount}</p>
           </div>
         </div>
         {edit && (
@@ -87,7 +87,7 @@ export function PortfolioListItem({ edit, portfolio }: Props) {
         <PortfolioAvatar avatar={portfolio.avatar} />
         <div className="flex flex-col items-start">
           <span className="text-sm font-semibold">{portfolio.name}</span>
-          <p className="text-xs">${portfolio.total}</p>
+          <p className="text-xs">${portfolio.totalAmount}</p>
         </div>
       </div>
     </button>
