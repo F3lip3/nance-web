@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { PortfolioEntity } from '@/entities/portfolio';
+import { PortfolioEntity } from '@/entities/portfolio.entity';
 import { usePortfolios } from '@/hooks/use-portfolios';
 import { cn } from '@/lib/utils';
 import {
@@ -34,43 +34,39 @@ export function PortfolioListItem({ edit, portfolio }: Props) {
         )}
       >
         <div className="flex flex-row items-center gap-2">
-          {edit && (
-            <GripVerticalIcon
-              className="cursor-grab text-muted-foreground"
-              size={22}
-            />
-          )}
+          <GripVerticalIcon
+            className="cursor-grab text-muted-foreground"
+            size={22}
+          />
           <PortfolioAvatar avatar={portfolio.avatar} />
           <div className="flex flex-col items-start">
             <span className="text-sm font-semibold">{portfolio.name}</span>
             <p className="text-xs">${portfolio.totalAmount}</p>
           </div>
         </div>
-        {edit && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                size="icon_sm"
-                variant="ghost"
-                className="text-muted-foreground"
-              >
-                <EllipsisIcon size={18} />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  <Edit2Icon size={20} className="mr-2" />
-                  <span>Edit portfolio</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Trash2Icon size={20} className="mr-2" />
-                  <span>Remove portfolio</span>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              size="icon_sm"
+              variant="ghost"
+              className="text-muted-foreground"
+            >
+              <EllipsisIcon size={18} />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <Edit2Icon size={20} className="mr-2" />
+                <span>Edit portfolio</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Trash2Icon size={20} className="mr-2" />
+                <span>Remove portfolio</span>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     );
   }

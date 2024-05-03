@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { PortfolioAvatarEntity } from '@/entities/portfolio';
+import { PortfolioAvatarEntity } from '@/entities/portfolio-avatar.entity';
 import { avatarColor, cn } from '@/lib/utils';
 
 type Props = {

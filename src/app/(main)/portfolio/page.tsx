@@ -1,5 +1,5 @@
-import { PortfolioDetailsContainer } from '@/containers/portfolio-details.container';
-import { PortfoliosContainer } from '@/containers/portfolios.container';
+import { PortfolioDetailsContainer } from '@/containers/portfolio/portfolio-details.container';
+import { PortfoliosListContainer } from '@/containers/portfolio/portfolio-list.container';
 import { PortfoliosProvider } from '@/contexts/portfolio.context';
 
 export default function Portfolio() {
@@ -7,9 +7,9 @@ export default function Portfolio() {
     <PortfoliosProvider>
       <div className="flex flex-1 flex-row gap-4">
         <div className="flex-none w-[340px] p-6">
-          <PortfoliosContainer />
+          <PortfoliosListContainer />
         </div>
-        <div className="flex flex-1">
+        <div className="flex flex-col flex-1 w-full pl-4 pr-8 py-8">
           <PortfolioDetailsContainer />
         </div>
       </div>

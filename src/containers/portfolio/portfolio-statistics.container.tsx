@@ -1,8 +1,6 @@
-import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
-
+import { PortfolioProfitInfo } from '@/components/portfolio/portfolio-profit-info';
 import { PortfolioStatisticsPerformer } from '@/components/portfolio/portfolio-statistics-performer';
 import { PortfolioStatisticsEntity } from '@/entities/portfolio-statistics.entity';
-import { cn } from '@/lib/utils';
 
 type ContainerProps = {
   portfolioId: string;
@@ -64,18 +62,19 @@ export const PortfolioStatisticsContainer = ({
         <h1 className="text-muted-foreground font-medium pb-2">
           All-time profit
         </h1>
-        <p
-          className={cn(
-            'text-2xl font-bold',
-            statistics.allTimeProfit >= 0 ? 'text-green-400' : 'text-red-500'
-          )}
-        >
-          {statistics.allTimeProfit >= 0 ? '+' : '-'} $
-          {statistics.allTimeProfit >= 0
-            ? statistics.allTimeProfit
-            : statistics.allTimeProfit * -1}
-        </p>
-        <div
+
+        <PortfolioProfitInfo
+          profit={statistics.allTimeProfit}
+          className="text-2xl font-bold"
+        />
+
+        <PortfolioProfitInfo
+          profit={statistics.allTimeProfitPercentage}
+          isPercentage={true}
+          iconStrokeWidth={3}
+        />
+
+        {/* <div
           className={cn(
             'flex flex-row items-center text-bae font-semi gap-1.5',
             statistics.allTimeProfitPercentage >= 0
@@ -92,7 +91,7 @@ export const PortfolioStatisticsContainer = ({
             ? statistics.allTimeProfitPercentage
             : statistics.allTimeProfitPercentage * -1}
           %
-        </div>
+        </div> */}
       </div>
       <PortfolioStatisticsPerformer
         performer={statistics.bestPerformer}

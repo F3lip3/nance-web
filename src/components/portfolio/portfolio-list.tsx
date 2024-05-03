@@ -1,5 +1,5 @@
 import { PortfolioListItem } from '@/components/portfolio/portfolio-list-item';
-import { PortfolioEntity } from '@/entities/portfolio';
+import { PortfolioEntity } from '@/entities/portfolio.entity';
 
 type Props = {
   edit: boolean;

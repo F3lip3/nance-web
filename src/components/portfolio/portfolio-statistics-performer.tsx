@@ -1,8 +1,7 @@
-import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import Image from 'next/image';
 
+import { PortfolioProfitInfo } from '@/components/portfolio/portfolio-profit-info';
 import { PortfolioStatisticsPerformerEntity } from '@/entities/portfolio-statistics.entity';
-import { cn } from '@/lib/utils';
 
 type Props = {
   title: string;
@@ -26,32 +25,13 @@ export const PortfolioStatisticsPerformer = ({ performer, title }: Props) => {
         />
         <span className="text-xl font-bold">{performer.symbol}</span>
       </div>
-      <div className="flex flex-row gap-2">
-        <p
-          className={cn(
-            'text-base font-semi',
-            performer.profit >= 0 ? 'text-green-400' : 'text-red-500'
-          )}
-        >
-          {performer.profit >= 0 ? '+' : '-'} $
-          {performer.profit >= 0 ? performer.profit : performer.profit * -1}
-        </p>
-        <div
-          className={cn(
-            'flex flex-row items-center text-base font-semi gap-1',
-            performer.profitPercentage >= 0 ? 'text-green-400' : 'text-red-500'
-          )}
-        >
-          {performer.profitPercentage >= 0 ? (
-            <ChevronUpIcon size={16} strokeWidth={2} />
-          ) : (
-            <ChevronDownIcon size={16} strokeWidth={2} />
-          )}{' '}
-          {performer.profitPercentage >= 0
-            ? performer.profitPercentage
-            : performer.profitPercentage * -1}
-          %
-        </div>
+      <div className="flex flex-row gap-2 text-base font-semibold">
+        <PortfolioProfitInfo profit={performer.profit} iconSize={12} />
+        <PortfolioProfitInfo
+          profit={performer.profitPercentage}
+          isPercentage={true}
+          iconStrokeWidth={3}
+        />
       </div>
     </div>
   );
