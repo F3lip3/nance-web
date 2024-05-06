@@ -73,25 +73,6 @@ export const PortfolioStatisticsContainer = ({
           isPercentage={true}
           iconStrokeWidth={3}
         />
-
-        {/* <div
-          className={cn(
-            'flex flex-row items-center text-bae font-semi gap-1.5',
-            statistics.allTimeProfitPercentage >= 0
-              ? 'text-green-400'
-              : 'text-red-500'
-          )}
-        >
-          {statistics.allTimeProfitPercentage >= 0 ? (
-            <ChevronUpIcon size={16} strokeWidth={4} />
-          ) : (
-            <ChevronDownIcon size={16} strokeWidth={4} />
-          )}{' '}
-          {statistics.allTimeProfitPercentage >= 0
-            ? statistics.allTimeProfitPercentage
-            : statistics.allTimeProfitPercentage * -1}
-          %
-        </div> */}
       </div>
       <PortfolioStatisticsPerformer
         performer={statistics.bestPerformer}
