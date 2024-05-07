@@ -11,40 +11,40 @@ const fakeStatistics = [
     id: 'abc',
     portfolioId: 'a',
     allTimeProfit: 3693.32,
-    allTimeProfitPercentage: 23.61,
+    allTimeProfitPercentage: 23.61 / 100,
     bestPerformer: {
       name: 'Bitcoin',
       logo: '',
       symbol: 'BTC',
       profit: 4891.57,
-      profitPercentage: 68.95
+      profitPercentage: 68.95 / 100
     },
     worstPerformer: {
       name: 'Cardano',
       logo: '',
       symbol: 'ADA',
       profit: -403.44,
-      profitPercentage: -79.26
+      profitPercentage: -79.26 / 100
     }
   },
   {
     id: 'def',
     portfolioId: 'b',
     allTimeProfit: -413.32,
-    allTimeProfitPercentage: -18.69,
+    allTimeProfitPercentage: -18.69 / 100,
     bestPerformer: {
       name: 'Bitcoin',
       logo: '',
       symbol: 'BTC',
       profit: 91.57,
-      profitPercentage: 22.15
+      profitPercentage: 22.15 / 100
     },
     worstPerformer: {
       name: 'Ripple',
       logo: '',
       symbol: 'XRP',
       profit: -603.44,
-      profitPercentage: -99.64
+      profitPercentage: -99.64 / 100
     }
   }
 ] satisfies PortfolioStatisticsEntity[];

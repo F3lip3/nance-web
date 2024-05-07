@@ -27,7 +27,7 @@ export const PortfoliosProvider: React.FC<PortfoliosProviderProps> = ({
       name: 'My first portfolio',
       totalAmount: 13520.46,
       valueChange24h: 5380.22,
-      valueChangePercentage24h: 0.39,
+      valueChangePercentage24h: 0.039,
       selected: true,
       showCharts: true,
       myPortfolio: true,

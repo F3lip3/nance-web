@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn, formatNumber } from '@/lib/utils';
 import {
   ChevronDownIcon,
   ChevronUpIcon,
@@ -38,6 +38,8 @@ export const PortfolioProfitInfo = ({
     return <MinusIcon size={size} strokeWidth={strokeWidth} />;
   };
 
+  const _profit = profit >= 0 ? profit : profit * -1;
+
   return (
     <div
       className={cn(
@@ -48,9 +50,12 @@ export const PortfolioProfitInfo = ({
     >
       <Icon size={iconSize} strokeWidth={iconStrokeWidth} />
       <p>
-        {!isPercentage && '$'}
+        {isPercentage
+          ? formatNumber(_profit, { style: 'percent', decimalDigits: 2 })
+          : formatNumber(_profit, { currency: 'USD' })}
+        {/* {!isPercentage && '$'}
         {profit >= 0 ? profit : profit * -1}
-        {isPercentage && '%'}
+        {isPercentage && '%'} */}
       </p>
     </div>
   );
