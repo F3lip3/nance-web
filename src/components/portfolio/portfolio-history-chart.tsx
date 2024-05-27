@@ -10,6 +10,13 @@ interface HistoricalData {
   [key: string]: Array<{ value: number; timestamp: string }>;
 }
 
+interface SeriesData {
+  data: [Date, number];
+  color: string;
+  marker: string;
+  seriesName: string;
+}
+
 const historical_data: HistoricalData = {
   twenty_four_hours: [
     {
@@ -6155,32 +6162,29 @@ export const PortfolioHistoryChart = () => {
       tooltip: {
         confine: true,
         trigger: 'axis',
-        extraCssText: 'padding: 0px; border: none;',
+        extraCssText: 'padding: 0px; border: none; background: transparent;',
         axisPointer: {
           type: 'cross',
           label: { show: false }
         },
-        formatter: function (
-          params: [{ data: [Date, number]; color: string; seriesName: string }]
-        ) {
-          const data = params?.[0]?.data;
+        formatter: function (params: SeriesData[]) {
+          const [series] = params;
+          const data = series?.data;
           const date = data?.[0] ? new Date(data[0]) : new Date();
 
           const date_string = date.toDateString();
           const time_string = date.toTimeString().split(' ')[0].substring(0, 5);
-          const utc = date.toTimeString().split(' ')[1];
           const value = formatNumber(data[1], { currency: 'USD' });
 
           return `
-            <div style="background-color: #303a4b; border: none; border-radius: 3px; padding: 0.5rem">
-              <div style="display: flex; flex-direction: row; align-items: center; justify-content: between; gap: 1rem">
-                <div style="display: flex; flex-direction: column; align-items: start; justify-content: center;">
-                  <div style="font-size: 12px; color: #fff; font-weight: 400;">${date_string}</div>
-                  <div style="font-size: 12px; color: #94a3b8; font-weight: 400;">
-                    ${time_string} <small>${utc}</small>
-                  </div>
+            <div class="text-sm border rounded-sm p-2 bg-card">
+              <div class="flex flex-col items-center justify-center">
+                <div class="text-xs pb-2 text-muted-foreground">
+                  ${date_string} ${time_string}
                 </div>
-                <div style="color: ${params[0].color}; padding-right: 0.5rem">${value}</div>
+                <div class="text-white">
+                  ${series.marker} <span style="color: #94a3b8">${series.seriesName}</span> ${value}
+                </div>
               </div>
             </div>
             `;

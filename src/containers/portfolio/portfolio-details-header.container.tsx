@@ -1,7 +1,7 @@
 import { PortfolioAvatar } from '@/components/portfolio/portfolio-avatar';
 import { PortfolioProfitInfo } from '@/components/portfolio/portfolio-profit-info';
 import { usePortfolios } from '@/hooks/use-portfolios';
-import { cn } from '@/lib/utils';
+import { cn, formatNumber } from '@/lib/utils';
 
 export const PortfolioDetailsHeaderContainer = () => {
   const { portfolio } = usePortfolios();
@@ -18,7 +18,7 @@ export const PortfolioDetailsHeaderContainer = () => {
           </span>
         </div>
         <div className="text-3xl 2xl:text-5xl font-bold">
-          ${portfolio.totalAmount}
+          ${formatNumber(portfolio.totalAmount)}
         </div>
         <div
           className={cn(

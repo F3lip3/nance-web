@@ -10,7 +10,7 @@ const PortfolioChartsContainer = () => {
         <PortfolioHistoryChart />
       </div>
       <div className="2xl:hidden flex flex-col flex-1 aspect-video bg-card rounded-lg p-6 w-full">
-        <Tabs defaultValue="performance" className="w-[240px]">
+        <Tabs defaultValue="performance" className="min-w-[240px]">
           <TabsList className="grid w-full grid-cols-2 p-0.5 h-auto">
             <TabsTrigger value="performance">Performance</TabsTrigger>
             <TabsTrigger value="allocation">Allocation</TabsTrigger>
@@ -24,6 +24,7 @@ const PortfolioChartsContainer = () => {
         </Tabs>
       </div>
       <div className="2xl:flex hidden flex-col flex-1 aspect-video bg-card rounded-lg p-6">
+        <h1 className="text-xl font-extrabold h-9">Performance (cumulative)</h1>
         <PortfolioPerformanceChart />
       </div>
       <div className="2xl:flex hidden flex-col flex-1 aspect-video bg-card rounded-lg p-6">
