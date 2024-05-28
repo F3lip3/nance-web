@@ -59,6 +59,10 @@ const config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
+      fontSize: {
+        '2xs': ['0.6rem', '0.8rem'],
+        '3xs': ['0.5rem', '0.75rem']
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

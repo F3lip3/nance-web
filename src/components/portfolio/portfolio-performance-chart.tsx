@@ -1,5 +1,3 @@
-'use client';
-
 import { formatNumber } from '@/lib/utils';
 import ReactECharts from 'echarts-for-react';
 import { useMemo } from 'react';
@@ -2058,11 +2056,11 @@ export const PortfolioPerformanceChart = () => {
       x.timestamp,
       x.plPercentage
     ]);
+
     const btc_trend_data = cumulativeChangeList.map(x => [
       x.timestamp,
       x.klinePercentage
     ]);
-    // const isProfit = data[0].value < data[data.length - 1].value;
 
     let xLabelFormat = '{MMM} {yyyy}';
 
@@ -2113,31 +2111,81 @@ export const PortfolioPerformanceChart = () => {
       tooltip: {
         confine: true,
         trigger: 'axis',
-        extraCssText: 'padding: 0px; border: none; background: transparent;',
+        extraCssText:
+          'padding: 0px; border: none; background: transparent; box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);',
         axisPointer: {
           type: 'cross',
           label: { show: false }
         },
         formatter: function (params: SeriesData[]) {
           const [series, trend] = params;
-          const data = series?.data;
-          const date = data?.[0] ? new Date(data[0]) : new Date();
 
+          const date = new Date(series.data[0]);
           const date_string = date.toDateString();
           const time_string = date.toTimeString().split(' ')[0].substring(0, 5);
-          const value = formatNumber(data[1], {
+
+          const positive_color = 'text-green-500';
+          const negative_color = 'text-red-500';
+
+          const positive_symbol = '<span class="text-2xs">▲</span>';
+          const negative_symbol = '<span class="text-2xs">▼</span>';
+
+          const series_positive = series.data[1] > 0;
+          const series_symbol = series_positive
+            ? positive_symbol
+            : negative_symbol;
+          const series_color = series_positive
+            ? positive_color
+            : negative_color;
+          const series_value = series_positive
+            ? series.data[1]
+            : series.data[1] * -1;
+          const series_percent = formatNumber(series_value, {
+            style: 'percent',
+            decimalDigits: 2
+          });
+
+          const trend_positive = trend.data[1] > 0;
+          const trend_symbol = trend_positive
+            ? positive_symbol
+            : negative_symbol;
+          const trend_color = trend_positive ? positive_color : negative_color;
+          const trend_value = trend_positive
+            ? trend.data[1]
+            : trend.data[1] * -1;
+          const trend_percent = formatNumber(trend_value, {
             style: 'percent',
             decimalDigits: 2
           });
 
           return `
-            <div class="text-sm border rounded-sm p-2 bg-card">
+            <div class="text-sm border-0 rounded-sm p-2 bg-muted shadow-xl">
               <div class="flex flex-col items-center justify-center">
-                <div class="text-xs pb-2 text-muted-foreground">
-                  ${date_string} ${time_string}
+                <div class="text-xs pb-2 text-muted">
+                  <span class="text-white">${date_string}</span>
+                  <span class="text-muted-foreground">${time_string}</span>
                 </div>
-                <div class="text-white">
-                  ${series.marker} <span style="color: #94a3b8">${series.seriesName}</span> ${value}
+                <div class="text-white flex flex-row items-center justify-between w-full gap-2">
+                  <div>
+                    ${series.marker}
+                    <span class="text-muted-foreground">
+                      ${series.seriesName}
+                    </span>
+                  </div>
+                  <div class="flex flex-row items-center gap-1 ${series_color}">
+                    ${series_symbol} ${series_percent}
+                  </div>
+                </div>
+                <div class="text-white flex flex-row items-center justify-between w-full gap-2">
+                  <div>
+                    ${trend.marker}
+                    <span class="text-muted-foreground">
+                      ${trend.seriesName}
+                    </span>
+                  </div>
+                  <div class="flex flex-row items-center gap-1 ${trend_color}">
+                    ${trend_symbol} ${trend_percent}
+                  </div>
                 </div>
               </div>
             </div>`;

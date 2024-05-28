@@ -6177,10 +6177,11 @@ export const PortfolioHistoryChart = () => {
           const value = formatNumber(data[1], { currency: 'USD' });
 
           return `
-            <div class="text-sm border rounded-sm p-2 bg-card">
+            <div class="border-0 rounded-sm p-2 bg-muted shadow-xl">
               <div class="flex flex-col items-center justify-center">
-                <div class="text-xs pb-2 text-muted-foreground">
-                  ${date_string} ${time_string}
+                <div class="text-xs pb-2">
+                  <span class="text-white">${date_string}</span>
+                  <span class="text-muted-foreground">${time_string}</span>
                 </div>
                 <div class="text-white">
                   ${series.marker} <span style="color: #94a3b8">${series.seriesName}</span> ${value}
@@ -6259,6 +6260,7 @@ export const PortfolioHistoryChart = () => {
         showLoading={false}
         notMerge={true}
         lazyUpdate={true}
+        className="mt-2"
       />
     </div>
   );
